@@ -1,0 +1,8 @@
+# venv
+webserver/
+
+# OS
+*.DS_Store
+
+# Ansible
+.vault-password-file.txt
