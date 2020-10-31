@@ -2,8 +2,10 @@
 - hosts: spigushe
   become: "yes"
   gather_facts: "no"
+
   vars:
     username: spigushe
+
   roles:
     - role: register-ssl
       tags:
@@ -14,3 +16,12 @@
     - role: static-website
       tags: frontend
       sw_server_name: spigushe.com
+
+  post_tasks:
+    - name: Clone static index.html
+      copy:
+        src: ./static/front/index.html
+        dest: ~/projects/spigushe.com/dist/
+        remote_src: no
+        owner: spigushe
+        mode: 0644
