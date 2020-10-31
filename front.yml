@@ -1,0 +1,16 @@
+---
+- hosts: spigushe
+  become: "yes"
+  gather_facts: "no"
+  vars:
+    username: spigushe
+  roles:
+    - role: register-ssl
+      tags:
+        - frontend
+        - certs
+      rs_server_name: spigushe.com
+
+    - role: static-website
+      tags: frontend
+      sw_server_name: spigushe.com
