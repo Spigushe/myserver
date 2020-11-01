@@ -17,7 +17,7 @@
       tags: backend
       pb_server_name: ligue.spigushe.com
 
-    - role: ligue-deploy
+    - role: github-deploy
       tags: backend
-      ld_server_name: ligue.spigushe.com
-      ld_repo: Spigushe/LigueSite.git
+      gd_server_name: ligue.spigushe.com
+      gd_repo: Spigushe/LigueSite.git
