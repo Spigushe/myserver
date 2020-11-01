@@ -27,7 +27,7 @@ ansible-playbook setup.yml
 ```
 
 ### Specific Commands
-### GitHub Deploy Key
+#### GitHub Deploy Key
 Get the public RSA key from the server:
 ```bash
 ssh krcg.org
