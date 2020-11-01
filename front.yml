@@ -21,7 +21,12 @@
     - name: Clone static index.html
       copy:
         src: ./static/front/index.html
-        dest: ~/projects/spigushe.com/dist/
+        dest: /home/spigushe/projects/spigushe.com/dist
         remote_src: no
         owner: spigushe
         mode: 0644
+
+    - name: restart NGINX
+      service:
+        name: nginx
+        state: reloaded
