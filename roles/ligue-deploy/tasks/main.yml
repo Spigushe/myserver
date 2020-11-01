@@ -1,6 +1,0 @@
----
-- name: Clone git repository
-  git:
-    repo: 'https://github.com/{{ ld_repo }}'
-    dest: "/home/{{username}}/projects/{{ld_server_name}}/dist"
-    update: yes
