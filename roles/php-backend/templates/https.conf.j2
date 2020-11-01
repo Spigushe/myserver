@@ -11,11 +11,11 @@ server {
 
 server {
   listen 443 ssl;
-  server_name {{r.server_name}};
+  server_name 146.59.146.57;
 
-  ssl_certificate         /etc/letsencrypt/live/{{r.server_name}}/fullchain.pem;
-  ssl_certificate_key     /etc/letsencrypt/live/{{r.server_name}}/privkey.pem;
-  ssl_trusted_certificate /etc/letsencrypt/live/{{r.server_name}}/fullchain.pem;
+  ssl_certificate         /etc/letsencrypt/live/{{ r.server_name }}/fullchain.pem;
+  ssl_certificate_key     /etc/letsencrypt/live/{{ r.server_name }}/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/{{ r.server_name }}/fullchain.pem;
 
   ssl_session_cache shared:SSL:50m;
   ssl_session_timeout 5m;
@@ -25,7 +25,7 @@ server {
   access_log syslog:server=unix:/dev/log,nohostname;
   error_log syslog:server=unix:/dev/log,nohostname;
 
-  root {{r.site_root}}/dist;
+  root {{ r.site_root }}/dist;
 
   charset utf-8;
   sendfile on;
@@ -54,20 +54,30 @@ server {
   gzip_static on;
 
   location / {
-    try_files   $uri $uri/ /index.php;
-  }
+    # try_files $uri $uri/ /index.php$request_uri /index.html;
+	#                ^ here is the problem
+	# issue solved here :
+	# This is caused because nginx will try to index the directory, and be blocked by itself. Throwing the error mentioned by OP
+	# https://stackoverflow.com/questions/19285355/nginx-403-error-directory-index-of-folder-is-forbidden
+	# also documented here : https://stackoverflow.com/a/51266372/4166732
+	try_files $uri /index.php$is_args$args;
+    }
 
   location ~* \.php$ {
-    include fastcgi.conf; # I include this in http context, it's just here to show it's required for fastcgi!
-    fastcgi_pass 127.0.0.1:9000;
+    try_files      $uri =404;
+
+	fastcgi_pass   127.0.0.1:9000;
+  	fastcgi_index  index.php;
+  	fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  	include        fastcgi_params;
   }
 
-  location ~* \.(?:js|css|json)$ {
-    add_header Cache-Control "public, must-revalidate, max-age=0";
+  location ~* \.(?:html|js|css|json)$ {
+    add_header     Cache-Control "public, must-revalidate, max-age=0";
   }
 
   location ~* \.(?:jpg|png|svg)$ {
-    add_header Cache-Control "public, must-revalidate, proxy-revalidate, max-age 3600";
-    add_header 'Access-Control-Allow-Origin' '*';
+    add_header    Cache-Control "public, must-revalidate, proxy-revalidate, max-age 3600";
+    add_header    'Access-Control-Allow-Origin' '*';
   }
 }
