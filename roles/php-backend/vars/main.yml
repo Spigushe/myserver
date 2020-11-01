@@ -1,0 +1,6 @@
+---
+r:
+  server_name: "{{pb_server_name}}"
+  alternate_server_name: "{{pb_alternate_server_name | default(False) }}"
+  site_root: "/home/{{username}}/projects/{{pb_server_name}}"
+  php_default_version: "7.3"
