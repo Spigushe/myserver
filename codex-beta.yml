@@ -16,7 +16,7 @@
         - backend
         - uwsgi
       fb_package: barrins-codex
-      fb_uwsgi_entrypoint: "barrins-codex:app"
+      fb_uwsgi_entrypoint: "barrins_codex:app"
       fb_server_name: codex-beta.spigushe.com
       fb_port: 8001
 
