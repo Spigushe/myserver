@@ -1,0 +1,26 @@
+---
+- hosts: spigushe
+  become: "yes"
+  gather_facts: "no"
+  vars:
+    username: spigushe
+  roles:
+    - role: register-ssl
+      tags:
+        - frontend
+        - certs
+      rs_server_name: codex-beta.spigushe.com
+
+    - role: flask-backend
+      tags:
+        - backend
+        - uwsgi
+      fb_package: barrins-codex
+      fb_uwsgi_entrypoint: "barrins-codex:app"
+      fb_server_name: codex-beta.spigushe.com
+      fb_port: 8001
+
+    - role: backend-website
+      tags: backend
+      pw_server_name: codex-beta.spigushe.com
+      pw_port: 8001
