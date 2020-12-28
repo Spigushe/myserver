@@ -21,7 +21,7 @@
       tags:
         - backend
         - uwsgi
-      fb_package: codex-of-the-damned
+      fb_package: barrins-codex
       fb_uwsgi_entrypoint: "barrins_codex:app"
       fb_server_name: barrins-codex.org
       fb_port: 8002
