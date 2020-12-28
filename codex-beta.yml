@@ -9,7 +9,7 @@
       tags:
         - frontend
         - certs
-      rs_server_name: codex-beta.spigushe.com
+      rs_server_name: beta.barrins-codex.org
 
     - role: flask-backend
       tags:
@@ -17,10 +17,10 @@
         - uwsgi
       fb_package: barrins-codex
       fb_uwsgi_entrypoint: "barrins_codex:app"
-      fb_server_name: codex-beta.spigushe.com
+      fb_server_name: beta.barrins-codex.org
       fb_port: 8001
 
     - role: backend-website
       tags: backend
-      pw_server_name: codex-beta.spigushe.com
+      pw_server_name: beta.barrins-codex.org
       pw_port: 8001
