@@ -30,7 +30,7 @@ ansible-playbook setup.yml
 #### GitHub Deploy Key
 Get the public RSA key from the server:
 ```bash
-ssh krcg.org
+ssh spigushe.org
 $> cd ~/.ssh
 $> cat id_rsa.pub
 ```
