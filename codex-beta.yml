@@ -4,6 +4,13 @@
   gather_facts: "no"
   vars:
     username: spigushe
+
+  pre_tasks:
+  - name: Ensure library.json.gz is absent
+    file:
+      state: absent
+      path: /home/{{ username }}/projects/codex-beta.spigushe.com/barrins_codex/library.json.gz
+
   roles:
     - role: register-ssl
       tags:
