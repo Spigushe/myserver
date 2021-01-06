@@ -6,6 +6,11 @@
     owner: "{{ username }}"
     mode: 0755
 
+- name: Remove library.json.gz
+  file:
+    state: absent
+    path: "{{ r.site_root }}/barrins_codex/library.json.gz"
+
 - name: Setup uwsgi
   apt:
     state: present
