@@ -22,7 +22,6 @@
         - backend
         - uwsgi
       fb_package: barrins-codex
-      fb_pip_target: barrins-codex==1.2.7
       fb_uwsgi_entrypoint: "barrins_codex:app"
       fb_server_name: barrins-codex.org
       fb_port: 8002
