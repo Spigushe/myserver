@@ -1,9 +1,9 @@
 ---
-- name: Add backports repository
-  apt_repository:
-    update_cache: "yes"
-    repo: "deb http://deb.debian.org/debian buster-backports main contrib non-free"
-    state: present
+# - name: Add backports repository
+#   apt_repository:
+#     update_cache: "yes"
+#     repo: "deb http://deb.debian.org/debian buster-backports main contrib non-free"
+#     state: present
 
 - name: Update APT packages
   apt:
@@ -15,11 +15,18 @@
   apt:
     state: present
     name:
+      - gcc
       - git
       - nginx
-      - python-acme
       - certbot
-      - python-certbot-nginx
+      - postgresql
+      - postgresql-client
+      - libpq-dev
+      - python3-psycopg2
+      - acl
+      - python3-certbot-nginx
+      - python3-venv
+      - python3-dev
       - curl
       - make
       - rsync
