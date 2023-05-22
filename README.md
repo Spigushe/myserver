@@ -4,8 +4,8 @@ Debian webserver deployment for personnal use (Commander League, MtG Association
 ## First Steps
 Create a venv in this directory
 ```bash
-python3 -m venv webserver
-source webserver/bin/activate
+python3 -m venv venv
+source venv/bin/activate
 pip install ansible
 ```
 Create a `.vault-password-file.txt` in this directory
