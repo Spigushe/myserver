@@ -5,12 +5,6 @@
   vars:
     username: spigushe
 
-  pre_tasks:
-  - name: Ensure library.json.gz is absent
-    file:
-      state: absent
-      path: /home/{{ username }}/projects/barrins-codex.org/barrins_codex/library.json.gz
-
   roles:
     - role: register-ssl
       tags:
